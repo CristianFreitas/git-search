@@ -1,0 +1,51 @@
+<mat-card class="card-search">
+    <mat-card-header class="title">
+  <span><a href="#">GIT SEARCH</a></span>
+</mat-card-header>
+<mat-card-content>
+    <form class="form">
+    <mat-form-field class="full-width">
+  <input matInput type="text" name="username" id="username" placeholder="Search git users with username" [(ngModel)]="username" (keyup)="findProfile()">
+   </mat-form-field>
+  </form>
+</mat-card-content>
+
+
+
+</mat-card>
+
+
+<!--  if exist git users -->
+<div *ngIf="profile">
+
+  <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title><h1>{{profile.name}}</h1></mat-card-title>
+        <mat-card-subtitle *ngIf="profile.company">{{profile.company}}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="profile.location">{{profile.location}}</mat-card-subtitle>
+        <mat-card-subtitle *ngIf="profile.email"><a href="emailto:{{profile.email}}">{{profile.email}}</a></mat-card-subtitle>
+        <mat-card-subtitle *ngIf="profile.blog"><a href="{{profile.blog}}" target="_blank">{{profile.blog}}</a></mat-card-subtitle>
+      </mat-card-header>
+<hr>
+
+      <img mat-card-image src="{{profile.avatar_url}}" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+        {{profile.bio}}
+        </p>
+      </mat-card-content>
+      <hr>
+      <mat-card-actions>
+        
+
+        <div class="button-row">
+            <button mat-raised-button>{{profile.followers}} Following</button>
+            <button mat-raised-button color="primary">Followers {{profile.following}}</button>
+            <button mat-raised-button color="accent">{{profile.public_gists}} Public Gists</button>
+            <button mat-raised-button color="warn">{{profile.public_repos}} Public Repos</button>
+      </div>          
+
+      </mat-card-actions>
+    </mat-card>
+  
+</div>
